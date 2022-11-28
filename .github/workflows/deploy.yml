@@ -1,0 +1,29 @@
+name: Generate and register service with SBOM in VSM
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  build:
+    name: Post Deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.8.3"
+          cache: "pip"
+      - run: |
+          pip install -r requirements.txt
+          cyclonedx-py -r -F --format json -o bom.json
+
+      # Invoke the GitHub action to register the service with SBOM
+      - name: VSM discovery
+        uses: leanix/vsm-discovery-github-action@main
+        with:
+          api-token: ${{ secrets.VSM_LEANIX_API_TOKEN }}
+          # dry-run: true
