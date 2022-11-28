@@ -29,10 +29,15 @@ jobs:
         with:
           retries: 1
           script: |
-            console.log(github.rest.repos.get({
+            github.rest.repos.get({
               owner: context.repo.owner,
               repo:context.repo.repo,
-            }))
+            })
+            .then(({data}) => {
+              console.log(data)
+            });
+
+
             
             
       # Invoke the GitHub action to register the service with SBOM
