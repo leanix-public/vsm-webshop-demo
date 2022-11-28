@@ -29,7 +29,7 @@ jobs:
         with:
           retries: 1
           script: |
-            console.log(octokit.rest.repos.get({
+            console.log(github.rest.repos.get({
               owner: context.repo.owner,
               repo:context.repo.repo,
             }))
