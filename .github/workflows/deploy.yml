@@ -34,7 +34,7 @@ jobs:
               repo:context.repo.repo,
             })
             .then(({data}) => {
-              console.log(data)
+              console.log(data.node_id)
             });
 
 
