@@ -1,5 +1,6 @@
 # vsm-webshop-demo
 A sample hello world service to demonstrate the VSM GitHub Action to upload Cyclone DX SBOMs on a sample python project.
+![LeanIX VSM](https://github.com/leanix-public/vsm-webshop-demo/blob/main/vsm.png)
 
 The service uses the [LeanIX VSM GitHub Action](https://github.com/leanix/vsm-discovery-github-action) to easily upload the SBOM to VSM via CI/CD flows. Check the Actions tab. 
 
