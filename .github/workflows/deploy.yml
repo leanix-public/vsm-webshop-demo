@@ -12,6 +12,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      
+      - uses: leanix/vsm-discovery-github-action@CID-1136---add-new-id-logic
+        with:
+          api-token: ${{ secrets.VSM_LEANIX_API_TOKEN }}
+
 
       - uses: actions/setup-python@v4
         with:
