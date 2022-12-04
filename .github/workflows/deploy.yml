@@ -42,7 +42,7 @@ jobs:
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           body: |
             Update SBOM 
-            added by [GitHub Action Run](https://github.com/leanix-public/vsm-webshop-demo/actions/runs/${{github.job}}).
+            added by [GitHub Action Run](https://github.com/leanix-public/vsm-webshop-demo/actions/runs/${{github.run_id}}).
           branch: sbom-update
           title: SBOM update
           
