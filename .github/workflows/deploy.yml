@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-  
+
       - uses: actions/setup-python@v4
         with:
           python-version: "3.8.3"
@@ -24,12 +24,25 @@ jobs:
           pip install -r requirements.txt
           cyclonedx-py -e -F --format json -o bom.json
           cat bom.json
+      - name: commit SBOM
+        run: |
           git config user.name leanix-ci
           git config user.email 'leanix-ci@users.noreply.github.com'
-          git checkout -b sbom-update 
           git add bom.json
-          git commit -m "Update SBOM file"
-          git push -u origin sbom-update
+          git -m "added SBOM"
+
+      - name: Create Pull Request for SBOM
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: Update SBOM
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          body: |
+            Update SBOM
+          branch: sbom-update
+          title: SBOM update
+          branch-suffix: timestamp
+        
 
       # - uses: actions/github-script@v6
       #   id: my-script
@@ -44,9 +57,6 @@ jobs:
       #         console.log(data.node_id)
       #       });
 
-
-            
-            
       # Invoke the GitHub action to register the service with SBOM
       - name: VSM discovery
         uses: leanix/vsm-discovery-github-action@v1.0.0
