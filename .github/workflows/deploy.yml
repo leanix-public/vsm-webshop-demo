@@ -29,7 +29,7 @@ jobs:
           git checkout -b sbom-update 
           git add bom.json
           git commit -m "Update SBOM file"
-          git push
+          git push -u origin sbom-update
 
       # - uses: actions/github-script@v6
       #   id: my-script
