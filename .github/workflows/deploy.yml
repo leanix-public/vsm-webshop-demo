@@ -26,6 +26,7 @@ jobs:
           cat bom.json
           git config user.name leanix-ci
           git config user.email 'leanix-ci@users.noreply.github.com'
+          git checkout -b sbom-update 
           git add bom.json
           git commit -m "Update SBOM file"
           git push
