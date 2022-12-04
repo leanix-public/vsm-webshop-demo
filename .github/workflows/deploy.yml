@@ -24,19 +24,22 @@ jobs:
           pip install -r requirements.txt
           cyclonedx-py -e -F --format json -o bom.json
           cat bom.json
+          git add bom.json
+          git commit -m "Update SBOM file"
+          git push
 
-      - uses: actions/github-script@v6
-        id: my-script
-        with:
-          retries: 1
-          script: |
-            github.rest.repos.get({
-              owner: context.repo.owner,
-              repo:context.repo.repo,
-            })
-            .then(({data}) => {
-              console.log(data.node_id)
-            });
+      # - uses: actions/github-script@v6
+      #   id: my-script
+      #   with:
+      #     retries: 1
+      #     script: |
+      #       github.rest.repos.get({
+      #         owner: context.repo.owner,
+      #         repo:context.repo.repo,
+      #       })
+      #       .then(({data}) => {
+      #         console.log(data.node_id)
+      #       });
 
 
             
