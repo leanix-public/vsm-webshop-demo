@@ -24,6 +24,9 @@ jobs:
           pip install -r requirements.txt
           cyclonedx-py -e -F --format json -o bom.json
           cat bom.json
+
+      
+
       - name: commit SBOM
         run: |
           git config user.name leanix-ci
@@ -38,10 +41,11 @@ jobs:
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           body: |
-            Update SBOM
+            Update SBOM 
+            added by [GitHub Action Run](https://github.com/leanix-public/vsm-webshop-demo/actions/runs/${{github.job}}).
           branch: sbom-update
           title: SBOM update
-          branch-suffix: timestamp
+          
         
 
       # - uses: actions/github-script@v6
