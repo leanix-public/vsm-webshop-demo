@@ -24,6 +24,8 @@ jobs:
           pip install -r requirements.txt
           cyclonedx-py -e -F --format json -o bom.json
           cat bom.json
+          git config user.name leanix-ci
+          git config user.email 'leanix-ci@users.noreply.github.com'
           git add bom.json
           git commit -m "Update SBOM file"
           git push
