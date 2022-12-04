@@ -5,6 +5,6 @@ A sample hello world service to demonstrate the VSM GitHub Action to upload Cycl
 The service uses the [LeanIX VSM GitHub Action](https://github.com/leanix/vsm-discovery-github-action) to easily upload the SBOM to VSM via CI/CD flows. Check the [Actions tab](https://github.com/leanix-public/vsm-webshop-demo/actions). 
 
 See the whole [user documentation](https://docs-vsm.leanix.net/docs/setting-up-the-cyclonedx-sbom-generation#pipy--poetry--conda) to see how this setup might also help you for your services. 
-tes
+
 ## Feedback 📢
 Feel free to contact me under vincent.groves@leanix.net. 
