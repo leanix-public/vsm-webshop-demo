@@ -1,0 +1,27 @@
+name: Generate and register service with SBOM in VSM
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  ort:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use HTTPS instead of SSH for Git cloning
+        run: git config --global url.https://github.com/.insteadOf ssh://git@github.com/
+      - name: Checkout project
+        uses: actions/checkout@v3
+      - name: Get changed files in the docs folder
+        id: dependencies-changed
+        uses: tj-actions/changed-files@v34
+        with:
+          files: |
+            requirements.txt
+      - name: Run GitHub Action for ORT
+        if: steps.dependencies-changed.outputs.any_changed == 'true'
+        uses: oss-review-toolkit/ort-ci-github-action@v1
+        with:
+          report-formats: 'CycloneDx'
+          
