@@ -1,4 +1,4 @@
-name: Generate and register service with SBOM in VSM
+name: Run ORT to generate SBOM
 
 on:
   push:
