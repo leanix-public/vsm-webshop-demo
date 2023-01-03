@@ -1,2 +1,5 @@
 env/
 .vscode/
+compare-bom/
+*ipynb_checkpoints/
+*.ipynb
