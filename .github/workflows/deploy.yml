@@ -3,9 +3,8 @@ name: Generate and register service with SBOM in VSM
 on:
   push:
     branches:
-      - "dev"
-  workflow_dispatch:
-
+      - "main"
+      
 jobs:
   build:
     name: Post Deployment
