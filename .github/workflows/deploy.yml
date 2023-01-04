@@ -75,6 +75,7 @@ jobs:
       # Invoke the GitHub action to register the service with SBOM
       - name: VSM discovery
         uses: leanix/vsm-discovery-github-action@v1.0.0
+        if: steps.dependencies-changed.outputs.any_changed == 'true'
         with:
           api-token: ${{ secrets.VSM_LEANIX_API_TOKEN }}
           additional-data: '{"number_of_incidents":"2","tech_stack":"Python","usage":"internal"}'
