@@ -25,6 +25,12 @@ jobs:
         with:
           report-formats: 'CycloneDx'
           ort-cli-report-args: '-O CycloneDx=output.file.formats=json'
+          run: >
+            cache-dependencies,
+            labels,
+            analyzer,
+            reporter,
+            upload-results
           
 
           
