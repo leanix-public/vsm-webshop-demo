@@ -1,4 +1,6 @@
+
 name: Auto SBOM generation
+
 
 on:
   push:
@@ -17,8 +19,6 @@ jobs:
         with:
           api-token: ${{secrets.VSM_LEANIX_API_TOKEN}}
           
-
-
           
 
           

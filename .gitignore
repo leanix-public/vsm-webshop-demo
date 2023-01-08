@@ -3,3 +3,7 @@ env/
 compare-bom/
 *ipynb_checkpoints/
 *.ipynb
+commands.md
+app/.cache/
+app/*.json
+app/sboms/
