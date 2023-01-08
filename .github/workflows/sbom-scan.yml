@@ -5,7 +5,7 @@ name: Auto SBOM generation
 on:
   push:
     branches:
-      - "main"
+      - "dev/*"
 
 jobs:
   ort:
