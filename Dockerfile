@@ -1,14 +1,8 @@
-FROM python:3.9-slim-buster
+FROM vncgrvs/python-base:latest AS builder
+COPY /app/requirements.txt /app/requirements.txt
+RUN cd /app && python -m ensurepip --upgrade && pip install -r requirements.txt
 
-# We copy just the requirements.txt first to leverage Docker cache
-COPY ./requirements.txt /app/requirements.txt
+FROM vncgrvs/python-base
+COPY --from=builder /app /app
 
-WORKDIR /app
-
-RUN pip install -r requirements.txt
-
-COPY . /app
-
-ENTRYPOINT [ "python" ]
-
-CMD [ "main.py" ]
+ENTRYPOINT [ "python", "/app/main.py" ]
