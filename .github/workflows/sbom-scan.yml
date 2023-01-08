@@ -1,0 +1,18 @@
+name: Run ORT to generate SBOM
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  ort:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use HTTPS instead of SSH for Git cloning
+        run: git config --global url.https://github.com/.insteadOf ssh://git@github.com/
+      - name: Run ORT test
+        run: vg-leanix/sbom-scan@main
+          
+
+          
