@@ -3,7 +3,7 @@ name: Generate and register service with SBOM in VSM
 on:
   push:
     branches:
-      - "main"
+      - "test/*"
       
 jobs:
   build:
@@ -36,26 +36,26 @@ jobs:
             cyclonedx-py -e -F --format json -o bom.json
             cat bom.json
 
-      - name: commit SBOM
-        if: steps.dependencies-changed.outputs.any_changed == 'true'
-        run: |
-          git config user.name ${{ github.actor }}
-          git config user.email 'leanix-ci@users.noreply.github.com'
-          git add bom.json
-          git commit -m "added SBOM"
+      # - name: commit SBOM
+      #   if: steps.dependencies-changed.outputs.any_changed == 'true'
+      #   run: |
+      #     git config user.name ${{ github.actor }}
+      #     git config user.email 'leanix-ci@users.noreply.github.com'
+      #     git add bom.json
+      #     git commit -m "added SBOM"
 
-      - name: Create Pull Request for SBOM
-        if: steps.dependencies-changed.outputs.any_changed == 'true'
-        uses: peter-evans/create-pull-request@v4
-        with:
-          commit-message: Update SBOM
-          committer: GitHub <noreply@github.com>
-          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-          body: |
-            Update SBOM 
-            added by [GitHub Action Run](https://github.com/leanix-public/vsm-webshop-demo/actions/runs/${{github.run_id}}).
-          branch: sbom-update
-          title: SBOM update
+      # - name: Create Pull Request for SBOM
+      #   if: steps.dependencies-changed.outputs.any_changed == 'true'
+      #   uses: peter-evans/create-pull-request@v4
+      #   with:
+      #     commit-message: Update SBOM
+      #     committer: GitHub <noreply@github.com>
+      #     author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+      #     body: |
+      #       Update SBOM 
+      #       added by [GitHub Action Run](https://github.com/leanix-public/vsm-webshop-demo/actions/runs/${{github.run_id}}).
+      #     branch: sbom-update
+      #     title: SBOM update
           
         
 
