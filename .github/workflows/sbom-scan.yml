@@ -1,4 +1,4 @@
-name: Scan repo for SBOM
+name: Auto SBOM generation
 
 on:
   push:
@@ -11,8 +11,9 @@ jobs:
     steps:
       - name: Use HTTPS instead of SSH for Git cloning
         run: git config --global url.https://github.com/.insteadOf ssh://git@github.com/
-      - name: Run ORT test
-        run: vg-leanix/sbom-scan@main
+
+      - name: Run ORT wrapper action
+        uses: vg-leanix/sbom-scan@main
         with:
           api-token: ${{secrets.VSM_LEANIX_API_TOKEN}}
           
